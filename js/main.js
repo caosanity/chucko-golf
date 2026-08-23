@@ -49,6 +49,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Ball marker add-on (adjusts displayed price)
+  const ballMarkerToggle = document.getElementById('ball-marker-toggle');
+  const priceNow = document.querySelector('.price-now');
+  const basePrice = 25;
+  ballMarkerToggle?.addEventListener('click', (e) => {
+    const btn = e.target.closest('.toggle-btn');
+    if (!btn || !priceNow) return;
+    const delta = parseInt(btn.dataset.priceDelta, 10) || 0;
+    priceNow.textContent = `$${(basePrice + delta).toFixed(2)}`;
+  });
+
   // Contact form
   const contactForm = document.getElementById('contact-form');
   const formSuccess = document.getElementById('form-success');
